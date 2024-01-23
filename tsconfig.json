@@ -18,10 +18,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/page": ["./app/*"],
-      "@/component": ["./component/*"],
-      "@/chunk": ["./chunk/*"],
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -4,7 +4,14 @@ import type { Config } from "tailwindcss";
 
 // Defining configs of tailwindCSS
 const config: Config = {
-  content: [],
+  content: [
+    './app/*.{ts, tsx, js, jsx}',
+    './app/**/*.{ts, tsx, js, jsx}',
+    './app/component/*.{ts, tsx, js, jsx}',
+    './app/component/**/*.{ts, tsx, js, jsx}',
+    './app/chunk/*.{ts, tsx, js, jsx}',
+    './app/chunk/**/*.{ts, tsx, js, jsx}',
+  ],
   theme: {},
   plugins: [],
 };

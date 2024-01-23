@@ -7,7 +7,7 @@ import SubmitBtnComponent from '@/chunk/submitBtnComponent';
 export default function LoginFormComponent():ReactNode {
     // Returning JSX
     return (
-        <form action="#">
+        <form action="#" className="p-[20px] gap-[20px] flex flex-col rounded-[20px] lg:w-[50%] w-full bg-blue shadow-xl">
             <InputComponent 
                 errorText=""
                 id="input-email-login"

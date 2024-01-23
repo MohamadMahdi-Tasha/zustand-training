@@ -7,8 +7,10 @@ import LoginFormComponent from "@/component/loginFormComponent";
 export default function HomePage():ReactNode {
     // Returning JSX
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <LoginFormComponent />
+        <div className="min-h-screen bg-midOrange">
+            <div className="container lg:min-h-screen lg:flex lg:items-center lg:justify-center">
+                <LoginFormComponent />
+            </div>
         </div>
     );
 }

@@ -8,7 +8,8 @@ import '@/app/index.css';
 // Defining "JetBrains_Mono" font
 const JetBrainsMonoFont = JetBrains_Mono({
     weight: ['300', '500', '600', '700'],
-    display: 'auto'
+    display: 'auto',
+    subsets: ['latin']
 });
 
 // Defining metadata of pages

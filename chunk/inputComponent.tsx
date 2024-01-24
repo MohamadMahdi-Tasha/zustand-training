@@ -2,18 +2,21 @@
 'use client';
 
 // Importing part
-import { Dispatch, MutableRefObject, ReactNode, useRef, useState } from "react";
+import { Dispatch, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react";
+import { UseFormRegister } from "react-hook-form";
 
 // Defining type of props
 interface propsType {
-    errorText: string;
+    errorText: string | undefined;
     placeHolder: string;
-    type: 'text' | 'email' | 'password';
-    id: `input-${string}`;
+    type: 'email' | 'password';
+    id: string;
+    register: UseFormRegister<any>;
+    name: string;
 }
 
 // Creating and exporting input component as default
-export default function InputComponent({errorText, placeHolder, type, id}:propsType):ReactNode {
+export default function InputComponent({errorText, placeHolder, type, id, register, name}:propsType):ReactNode {
     // Defining state of component 
     const [isFocused, setFocused]:[boolean, Dispatch<boolean>] = useState(false);
     const [value, setValue]:[string | undefined, Dispatch<any>] = useState('');
@@ -27,19 +30,30 @@ export default function InputComponent({errorText, placeHolder, type, id}:propsT
         <div data-focused={isFocused}>
             <div className="relative">
                 <input 
-                    value={value}
-                    ref={inputRef}
+                    {...register(name, {
+                        required: (type === 'email') ? 'The email is required' : (type === 'password') ? 'The password is required' : true,
+                        validate: (value:string) => {
+                            if (type === 'email') {
+                                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                                if (value.match(emailRegex)) {return true} 
+                                else {return 'Please match the following pattern'}
+                            } else {
+                                if (value.length > 12) {
+                                    return 'The lenght of password cannot be more than 12'
+                                } else if (value.length < 8) {
+                                    return 'The password should be at least 8 character in lenght'
+                                } else if (value.length > 8 && value.length < 12) {
+                                    return true
+                                }
+                            }
+                        },
+                        onBlur: () => (value === '') ? setFocused(false) : setFocused(true),
+                        onChange: () => setValue(inputElement?.value),
+                        value: value
+                    })}
                     className="border bg-blue border-white text-white text-[16px] font-normal rounded-[10px] w-full p-[10px] transition outline-none"
-                    id={id}
-                    name={id}
-                    type={type}
                     onFocus={() => setFocused(true)}
-                    onInput={() => setValue(inputElement?.value)}
-                    onBlur={() => {
-                        (value === '')
-                            ? setFocused(false)
-                            : setFocused(true)
-                    }}
                 />
                 <label 
                     data-focused={isFocused}
@@ -50,7 +64,7 @@ export default function InputComponent({errorText, placeHolder, type, id}:propsT
                 </label>
             </div>
             {
-                (errorText !== '') 
+                (errorText && errorText !== '') 
                 ?  (
                     <div className="mt-[20px]">
                         <p className="text-orange lg:text-[16px] text-[13px] font-bold">

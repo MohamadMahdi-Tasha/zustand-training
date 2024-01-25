@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 /*Defining custom styles*/
-.container {@apply max-w-[1300px] mx-auto p-[20px];}
+.container {@apply max-w-[1300px] mx-auto lg:p-[20px] p-[15px];}
 .transition {@apply transition-all duration-500;}

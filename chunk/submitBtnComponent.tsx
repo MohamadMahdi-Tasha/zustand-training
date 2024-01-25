@@ -12,7 +12,7 @@ export default function SubmitBtnComponent({isSubmitting}:propsType):ReactNode {
     return (
         <button 
             disabled={isSubmitting} 
-            className="p-[10px] rounded-[10px] bg-orange text-center text-[16px] font-bold text-white transition hover:bg-midOrange disabled:opacity-50 disabled:pointer-events-none"
+            className="p-[10px] rounded-[10px] bg-orange text-center lg:text-[16px] text-[13px] font-bold text-white transition hover:bg-midOrange disabled:opacity-50 disabled:pointer-events-none"
         >
             {
                 (isSubmitting) 

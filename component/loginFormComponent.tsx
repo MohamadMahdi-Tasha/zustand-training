@@ -48,7 +48,7 @@ export default function LoginFormComponent():ReactNode {
             data-valid={isValid}
             onSubmit={handleSubmit(onSubmit)}
             action="#" 
-            className="p-[20px] gap-[20px] flex flex-col rounded-[20px] lg:w-[50%] w-full bg-blue shadow-xl border-4 data-[valid='true']:border-white data-[valid='false']:border-red-600"
+            className="lg:p-[20px] p-[10px] lg:gap-[20px] gap-[15px] flex flex-col lg:rounded-[20px] rounded-[10px] lg:w-[50%] w-full bg-blue shadow-xl border-4 data-[valid='true']:border-white data-[valid='false']:border-red-600"
         >
             <p className="text-green-600 lg:text-[16px] text-[13px] font-bold">
                 Email: hello@gmail.com <br />

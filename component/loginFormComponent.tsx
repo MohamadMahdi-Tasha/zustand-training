@@ -1,3 +1,4 @@
+// Codes by mahdi tasha
 // Forcing nextJS to render this component as client side componet\
 'use client';
 
@@ -7,6 +8,7 @@ import InputComponent from '@/chunk/inputComponent';
 import SubmitBtnComponent from '@/chunk/submitBtnComponent';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from "next/navigation";
+import { useLoginState } from "@/app/store";
 
 // Defining type of email forms
 type formType = {
@@ -16,6 +18,9 @@ type formType = {
 
 // Creating and exporting login form as default
 export default function LoginFormComponent():ReactNode {
+    // Getting login state 
+    const { logIn } = useLoginState();
+
     // Defining useForm hook to use
     const {
         register,
@@ -39,7 +44,10 @@ export default function LoginFormComponent():ReactNode {
         else if (
             email === 'hello@gmail.com' &&
             password === '12345678'
-        ) { router.push('/app') }
+        ) { 
+            router.push('/app');
+            logIn(); 
+        }
     }
 
     // Returning JSX

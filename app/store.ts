@@ -1,6 +1,5 @@
 // Codes by mahdi tasha
 // Importing part
-
 import { create } from 'zustand'
 
 // Login state
@@ -8,6 +7,7 @@ import { create } from 'zustand'
 type LoginStateType = {
     isLoggedIn: boolean;
     logIn: () => void;
+    logOut: () => void;
 }
 
 // Defining store

@@ -18,10 +18,10 @@ export default function AppPage():ReactNode {
                 {
                     (isLoggedIn)
                         ? (
-                            <div className="mb-[30px] bg-blue p-[20px] rounded-[20px]">
-                                <h6 className="text-center font-bold text-orange text-[30px] mb-[20px]">Thanks for logging in</h6>
+                            <div className="mb-[30px] bg-blue lg:p-[20px] p-[15px] lg:rounded-[20px] rounded-[15px]">
+                                <h6 className="text-center font-bold text-orange lg:text-[30px] text-[16px] mb-[20px]">Thanks for logging in</h6>
                                 <iframe 
-                                    className="w-[50%] h-[300px] rounded-[20px] mx-auto"
+                                    className="lg:w-[50%] w-full h-[300px] lg:rounded-[20px] rounded-[10px] lg:mx-auto"
                                     src="https://www.youtube.com/embed/p-msTt8PkoE?si=mUaA46C468GkEVzJ" 
                                     title="YouTube video player" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

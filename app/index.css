@@ -5,5 +5,8 @@
 @tailwind utilities;
 
 /*Defining custom styles*/
-.container {@apply max-w-[1300px] mx-auto lg:p-[20px] p-[15px];}
+.container {@apply max-w-[1300px] mx-auto lg:p-[20px] p-[15px] lg:min-h-screen lg:flex lg:items-center lg:justify-center;}
+.container-no-flex {@apply max-w-[1300px] mx-auto lg:p-[20px] p-[15px];}
 .transition {@apply transition-all duration-500;}
+.title {@apply lg:text-[30px] text-[20px] underline decoration-wavy underline-offset-4 font-bold mb-[15px] text-blue;}
+.paragraph {@apply lg:text-[20px] text-[14px] font-light mb-[30px] text-blue;}

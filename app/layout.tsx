@@ -42,7 +42,7 @@ export default function RootLayout({children}:propsType):ReactNode {
     // Retutning JSX
     return (
         <html>
-            <body className={`overflow-x-hidden ${JetBrainsMonoFont.className}`}>
+            <body className={`overflow-x-hidden min-h-screen bg-midOrange ${JetBrainsMonoFont.className}`}>
                 {children}
             </body>
         </html>

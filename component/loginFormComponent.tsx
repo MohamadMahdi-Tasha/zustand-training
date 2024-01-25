@@ -2,10 +2,11 @@
 'use client';
 
 // Importing part
-import { FormEvent, ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import InputComponent from '@/chunk/inputComponent';
 import SubmitBtnComponent from '@/chunk/submitBtnComponent';
-import { SubmitHandler, UseFormRegister, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from "next/navigation";
 
 // Defining type of email forms
 type formType = {
@@ -19,24 +20,40 @@ export default function LoginFormComponent():ReactNode {
     const {
         register,
         handleSubmit,
+        setError,
         formState: {
             errors,
-            isSubmitting
+            isSubmitting,
+            isValid
         }
     } = useForm<formType>();
 
+    // Defining useRouter hook to use
+    const router = useRouter();
+
     // Defining onSubmit handler on form
-    const onSubmit: SubmitHandler<formType> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<formType> = async ({ email, password }) => {  
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        if (email !== 'hello@gmail.com') { setError('email', { message: 'Your information didn"t match. try again' }) }
+        else if (password !== '12345678') { setError('password', { message: 'Your information didn"t match. try again' }) }
+        else if (
+            email === 'hello@gmail.com' &&
+            password === '12345678'
+        ) { router.push('/app') }
     }
 
     // Returning JSX
     return (
         <form 
+            data-valid={isValid}
             onSubmit={handleSubmit(onSubmit)}
             action="#" 
-            className="p-[20px] gap-[20px] flex flex-col rounded-[20px] lg:w-[50%] w-full bg-blue shadow-xl"
+            className="p-[20px] gap-[20px] flex flex-col rounded-[20px] lg:w-[50%] w-full bg-blue shadow-xl border-4 data-[valid='true']:border-white data-[valid='false']:border-red-600"
         >
+            <p className="text-green-600 lg:text-[16px] text-[13px] font-bold">
+                Email: hello@gmail.com <br />
+                Password: 12345678
+            </p>
             <InputComponent 
                 name="email"
                 register={register}
@@ -53,6 +70,16 @@ export default function LoginFormComponent():ReactNode {
                 placeHolder="Password:"
                 type="password"
             /> 
+            {
+                (errors.root && errors.root.message !== '') 
+                ?  (
+                    <div>
+                        <p className="text-orange lg:text-[16px] text-[13px] font-bold">
+                            {errors.root.message}
+                        </p>
+                    </div>
+                ) : false
+            }
             <SubmitBtnComponent isSubmitting={isSubmitting} />
         </form>
     );

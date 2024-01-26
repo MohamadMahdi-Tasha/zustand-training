@@ -32,23 +32,6 @@ export default function InputComponent({errorText, placeHolder, type, id, regist
             <div className="relative">
                 <input 
                     {...register(name, {
-                        required: (type === 'email') ? 'The email is required' : (type === 'password') ? 'The password is required' : true,
-                        validate: (value:string) => {
-                            if (type === 'email') {
-                                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-                                if (value.match(emailRegex)) {return true} 
-                                else {return 'Please match the following pattern'}
-                            } else {
-                                if (value.length > 12) {
-                                    return 'The lenght of password cannot be more than 12'
-                                } else if (value.length < 8) {
-                                    return 'The password should be at least 8 character in lenght'
-                                } else if (value.length > 8 && value.length < 12) {
-                                    return true
-                                }
-                            }
-                        },
                         onBlur: () => (value === '') ? setFocused(false) : setFocused(true),
                         onChange: () => setValue(inputElement?.value),
                         value: value

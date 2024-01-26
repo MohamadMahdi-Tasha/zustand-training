@@ -9,12 +9,16 @@ import SubmitBtnComponent from '@/chunk/submitBtnComponent';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from "next/navigation";
 import { useLoginState } from "@/app/store";
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
 
-// Defining type of email forms
-type formType = {
-    email: string;
-    password: string;
-}
+// Defining type of form
+const formSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8).max(12)
+});
+
+type formType = z.infer<typeof formSchema>;
 
 // Creating and exporting login form as default
 export default function LoginFormComponent():ReactNode {
@@ -31,7 +35,9 @@ export default function LoginFormComponent():ReactNode {
             isSubmitting,
             isValid
         }
-    } = useForm<formType>();
+    } = useForm<formType>({
+        resolver: zodResolver(formSchema)
+    });
 
     // Defining useRouter hook to use
     const router = useRouter();

@@ -3,7 +3,7 @@
 'use client';
 
 // Importing part
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import InputComponent from '@/chunk/inputComponent';
 import SubmitBtnComponent from '@/chunk/submitBtnComponent';
 import { SubmitHandler, useForm } from 'react-hook-form';

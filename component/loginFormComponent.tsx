@@ -39,8 +39,11 @@ export default function LoginFormComponent():ReactNode {
     // Defining onSubmit handler on form
     const onSubmit: SubmitHandler<formType> = async ({ email, password }) => {  
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        if (email !== 'hello@gmail.com') { setError('email', { message: 'Your information didn"t match. try again' }) }
-        else if (password !== '12345678') { setError('password', { message: 'Your information didn"t match. try again' }) }
+
+        if (
+            email !== 'hello@gmail.com' &&
+            password !== '12345678'
+        ) {setError('root', { message: 'Your information didn"t match. try again' })}
         else if (
             email === 'hello@gmail.com' &&
             password === '12345678'
